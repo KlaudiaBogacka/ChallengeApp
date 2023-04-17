@@ -1,66 +1,44 @@
-﻿int number = 1992;
-string numberAsString = number.ToString();
-char[] letters = numberAsString.ToArray();
+﻿using ChallengeApp;
 
-int counter0 = 0;
-int counter1 = 0;
-int counter2 = 0;
-int counter3 = 0;
-int counter4 = 0;
-int counter5 = 0;
-int counter6 = 0;
-int counter7 = 0;
-int counter8 = 0;
-int counter9 = 0;
+Employee employee1 = new Employee("Klaudia", "Nowak", 31);
+Employee employee2 = new Employee("Damian", "Kowalski", 33);
+Employee employee3 = new Employee("Miłosz", "Nowy", 21);
 
-foreach (char letter in letters)
+employee1.AddScore(5);
+employee1.AddScore(8);
+employee1.AddScore(2);
+employee1.AddScore(4);
+employee1.AddScore(6);
+
+employee2.AddScore(9);
+employee2.AddScore(3);
+employee2.AddScore(4);
+employee2.AddScore(9);
+employee2.AddScore(1);
+
+employee3.AddScore(5);
+employee3.AddScore(8);
+employee3.AddScore(3);
+employee3.AddScore(5);
+employee3.AddScore(2);
+
+List<Employee> employers = new List<Employee>()
 {
-    if (letter == '0')
+    employee1, employee2, employee3
+};
+
+int maxResult = -1;
+Employee employeeWithMaxResult = null;
+
+foreach (var employee in  employers)
+{
+    if (employee.Result > maxResult)
     {
-        counter0++;
+        employeeWithMaxResult = employee;
     }
-    else if (letter == '1')
-    {
-        counter1++;
-    }
-    else if (letter == '2')
-    {
-        counter2++;
-    }
-    else if (letter == '3')
-    {
-        counter3++;
-    }
-    else if (letter == '4')
-    {
-        counter4++;
-    }
-    else if (letter == '5')
-    {
-        counter5++;
-    }
-    else if (letter == '6')
-    {
-        counter6++;
-    }
-    else if (letter == '7')
-    {
-        counter7++;
-    }
-    else if (letter == '8')
-    {
-        counter8++;
-    }
-    else if (letter == '9')
-        counter9++;
 }
-Console.WriteLine(" 0 występuje " + counter0 + " razy");
-Console.WriteLine(" 1 występuje " + counter1 + " razy");
-Console.WriteLine(" 2 występuje " + counter2 + " razy");
-Console.WriteLine(" 3 występuje " + counter3 + " razy");
-Console.WriteLine(" 4 występuje " + counter4 + " razy");
-Console.WriteLine(" 5 występuje " + counter5 + " razy");
-Console.WriteLine(" 6 występuje " + counter6 + " razy");
-Console.WriteLine(" 7 występuje " + counter7 + " razy");
-Console.WriteLine(" 8 występuje " + counter8 + " razy");
-Console.WriteLine(" 9 występuje " + counter9 + " razy");
+
+Console.WriteLine("Najwięcej punktów zdobył");
+Console.WriteLine( employeeWithMaxResult.Name + " " + employeeWithMaxResult.Surname );
+Console.WriteLine( employeeWithMaxResult.Age + " lat ");
+Console.WriteLine("Otrzymał " + employeeWithMaxResult.Result + " Punktów ");
