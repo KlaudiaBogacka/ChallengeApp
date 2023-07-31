@@ -1,4 +1,6 @@
-﻿namespace ChallengeApp
+﻿using System.ComponentModel.Design;
+
+namespace ChallengeApp
 {
     public class Employee
     {
@@ -16,9 +18,48 @@
 
         public void AddGrade(float grade)
         {
-            this.grades.Add(grade);
+            // 3.33
+            // 3
+
+            int valueinInt = (int)grade;
+
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("invalid grade value");
+            }   
         }
 
+        public void AddGrade(string grade)
+        {
+            if(float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine("string is not float");
+            }
+        }
+
+        public void AddGrade(long grade)
+        {
+            float result = (float)grade;
+            this.AddGrade((float) result);
+        }
+        public void AddGrade(int grade)
+        {
+            float result = (float)grade;
+            this.AddGrade((float)result);
+        }
+        public void AddGrade(double grade)
+        {
+            float result = (float)grade;
+            this.AddGrade((float)result);
+        }
         public Statistics GetStatistics()
         {
             var Statistics = new Statistics();
