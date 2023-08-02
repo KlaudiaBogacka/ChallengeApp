@@ -19,8 +19,8 @@
         public void GetEmployeeShouldReturnDifferentObjects()
         {
             // arrange
-            var employee1 = GetEmployee("Klaudia", "Nowak", 31);
-            var employee2 = GetEmployee("Damian", "Kowalski", 33);
+            var employee1 = GetEmployee("Klaudia", "Nowak");
+            var employee2 = GetEmployee("Damian", "Kowalski");
             // act
 
 
@@ -28,9 +28,9 @@
             Assert.AreNotEqual(employee1, employee2);
         }
 
-        private Employee GetEmployee(string name, string surname, int age)
+        private Employee GetEmployee(string name, string surname)
         {
-            return new Employee(name, surname, age);
+            return new Employee(name, surname);
         }
     }
     
