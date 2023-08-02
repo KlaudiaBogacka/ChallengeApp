@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.Design;
-
-namespace ChallengeApp
+﻿namespace ChallengeApp
 {
     public class Employee
     {
@@ -10,7 +8,6 @@ namespace ChallengeApp
         {
             this.Name = name;
             this.Surname = surname;
-
         }
         public string Name { get; private set; }
 
@@ -29,26 +26,26 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("invalid grade value");
-            }   
+              Console.WriteLine("invalid grade value");
+            }
         }
 
         public void AddGrade(string grade)
         {
-            if(float.TryParse(grade, out float result))
+            if (float.TryParse(grade, out float result))
             {
                 this.AddGrade(result);
             }
             else
             {
-                Console.WriteLine("string is not float");
+              Console.WriteLine("string is not float");
             }
         }
 
         public void AddGrade(long grade)
         {
             float result = (float)grade;
-            this.AddGrade((float) result);
+            this.AddGrade((float)result);
         }
         public void AddGrade(int grade)
         {
@@ -60,7 +57,7 @@ namespace ChallengeApp
             float result = (float)grade;
             this.AddGrade((float)result);
         }
-        public Statistics GetStatistics()
+        public Statistics GetStatisticsWithForeach()
         {
             var Statistics = new Statistics();
             Statistics.Average = 0;
@@ -68,17 +65,74 @@ namespace ChallengeApp
             Statistics.Min = float.MaxValue;
             Statistics.Sum = 0;
 
+
             foreach (var grade in this.grades)
             {
                 Statistics.Max = Math.Max(Statistics.Max, grade);
                 Statistics.Min = Math.Min(Statistics.Min, grade);
                 Statistics.Average += grade;
-                Statistics.Sum += grade;
             }
 
             Statistics.Average /= this.grades.Count;
             return Statistics;
         }
-        
-    } 
+        public Statistics GetStatisticsWithFor()
+        {
+            var Statistics = new Statistics();
+            Statistics.Average = 0;
+            Statistics.Max = float.MinValue;
+            Statistics.Min = float.MaxValue;
+
+            for (var i = 0; i < this.grades.Count; i++)
+            {
+                Statistics.Max = Math.Max(Statistics.Max, this.grades[i]);
+                Statistics.Min = Math.Min(Statistics.Min, this.grades[i]);
+                Statistics.Average += this.grades[i];
+            }
+
+            Statistics.Average /= this.grades.Count;
+            return Statistics;
+        }
+
+        public Statistics GetStatisticsWithDoWhile()
+        {
+            var Statistics = new Statistics();
+            Statistics.Average = 0;
+            Statistics.Max = float.MinValue;
+            Statistics.Min = float.MaxValue;
+            var index = 0;
+
+            do
+            {
+                Statistics.Max = Math.Max(Statistics.Max, this.grades[index]);
+                Statistics.Min = Math.Min(Statistics.Min, this.grades[index]);
+                Statistics.Average += this.grades[index];
+                index++;
+
+            } while (index < this.grades.Count);
+
+            Statistics.Average /= this.grades.Count;
+            return Statistics;
+        }
+
+        public Statistics GetStatisticsWithWhile()
+        {
+            var Statistics = new Statistics();
+            Statistics.Average = 0;
+            Statistics.Max = float.MinValue;
+            Statistics.Min = float.MaxValue;
+            var index = 0;
+
+            while (index < this.grades.Count)
+            {
+                Statistics.Max = Math.Max(Statistics.Max, this.grades[index]);
+                Statistics.Min = Math.Min(Statistics.Min, this.grades[index]);
+                Statistics.Average += this.grades[index];
+                index++;
+            }
+
+            Statistics.Average /= this.grades.Count;
+            return Statistics;
+        }
+    }
 }
