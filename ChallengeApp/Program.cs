@@ -31,4 +31,3 @@ Console.WriteLine($"Średnia ocen: {statistics.Average}");
 Console.WriteLine($"Ocena minimalna: {statistics.Min}");
 Console.WriteLine($"Ocena maksymalna: {statistics.Max}");
 Console.WriteLine("===========================================");
-
