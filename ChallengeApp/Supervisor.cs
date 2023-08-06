@@ -1,13 +1,9 @@
-﻿using System.ComponentModel.Design;
-
-namespace ChallengeApp
+﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
+    internal class Supervisor : IEmployee
     {
         private List<float> grades = new List<float>();
-
-
-        public Employee(string name, string surname)
+        public Supervisor(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
@@ -18,26 +14,69 @@ namespace ChallengeApp
 
         public void AddGrade(float grade)
         {
-            int valueinInt = (int)grade;
-
-            if (grade >= 0 && grade <= 100)
-            {
-                this.grades.Add(grade);
-            }
-            else
-            {
-                throw new Exception("invalid grade value");
-            }
+            throw new NotImplementedException();
         }
+
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
+            switch (grade)
             {
-                this.AddGrade(result);
-            }
-            else
-            {
-                throw new Exception("string is not float");
+                case "6":
+                    this.grades.Add(100);
+                    break;
+
+                case "-6":
+                case "6-":
+
+                    this.grades.Add(95);
+                    break;
+
+                case "5":
+                    this.grades.Add(80);
+                    break;
+
+                case "-5":
+                case "5-":
+                    this.grades.Add(75);
+                    break;
+
+                case "4":
+                    this.grades.Add(60);
+                    break;
+
+                case "-4":
+                case "4-":
+                    this.grades.Add(55);
+                    break;
+
+                case "3":
+                    this.grades.Add(40);
+                    break;
+
+                case "-3":
+                case "3-":
+                    this.grades.Add(35);
+                    break;
+
+                case "2":
+                    this.grades.Add(20);
+                    break;
+
+                case "-2":
+                case "2-":
+                    this.grades.Add(15);
+                    break;
+
+                case "+1":
+                case "1+":
+                    this.grades.Add(5);
+                    break;
+
+                case "1":
+                    this.grades.Add(0);
+                    break;
+                default:
+                    throw new Exception("Do oceny możesz używać tylko ocen: 6, -6, 6-, 5, -5, 5-, 4, -4, 4-, 3, -3, 3-, 2, -2, 2-, 1, -1, 1-");
             }
         }
 
@@ -46,42 +85,28 @@ namespace ChallengeApp
             float gradeAsFloat = (float)grade;
             this.AddGrade(gradeAsFloat);
         }
+
         public void AddGrade(double grade)
         {
             float gradeAsFloat = (float)grade;
             this.AddGrade(gradeAsFloat);
         }
+
         public void AddGrade(int grade)
         {
             float gradeAsFloat = (float)grade;
             this.AddGrade(gradeAsFloat);
         }
+
         public void AddGrade(char grade)
         {
-            switch (grade)
-            {
-                case 'A':
-                case 'a':
-                    this.grades.Add(100);
-                    break;
-                case 'B':
-                    this.grades.Add(80);
-                    break;
-                case 'C':
-                    this.grades.Add(60);
-                    break;
-                case 'D':
-                    this.grades.Add(40);
-                    break;
-                case 'E':
-                    this.grades.Add(20);
-                    break;
-                default:
-                    throw new Exception("Wrong letter");
-            }
+            float gradeAsFloat = (float)grade;
+            this.AddGrade(gradeAsFloat);
         }
+
         public Statistics GetStatistics()
         {
+
             var statistics = new Statistics();
             statistics.Average = 0;
             statistics.Max = float.MinValue;
@@ -89,7 +114,7 @@ namespace ChallengeApp
 
             foreach (var grade in this.grades)
             {
-                if(grade >= 0)
+                if (grade >= 0)
                 {
                     statistics.Max = Math.Max(statistics.Max, grade);
                     statistics.Min = Math.Min(statistics.Min, grade);
@@ -99,7 +124,7 @@ namespace ChallengeApp
 
             statistics.Average /= this.grades.Count;
 
-            switch(statistics.Average)
+            switch (statistics.Average)
             {
                 case var average when average >= 80:
                     statistics.AverageLetter = 'A';
@@ -120,6 +145,5 @@ namespace ChallengeApp
 
             return statistics;
         }
-
     }
 }
