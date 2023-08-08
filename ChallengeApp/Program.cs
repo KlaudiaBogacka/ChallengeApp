@@ -3,32 +3,18 @@
 Console.WriteLine("Witaj w naszym Programie do oceny Pracowników");
 Console.WriteLine("===========================================");
 Console.WriteLine();
-Console.WriteLine("Aplikacja liczy oceny Kierowników");
+Console.WriteLine("Aplikacja liczy oceny Pracowników");
 Console.WriteLine("Wpisz ocenę Pracownika");
 Console.WriteLine("Aby zsumować oceny wpisz'q'");
 Console.WriteLine("===========================================");
 Console.WriteLine();
 
-var supervisor = new Supervisor("Joanna", "Nowak");
-
-try
-{
-    Supervisor sup = null;
-    var name = sup.Surname;
-}
-catch(Exception exception)
-{
-    Console.WriteLine(exception.Message);
-}
-finally
-{
-    Console.WriteLine("Finally here");
-}
+var employee = new EmployeeInFile("Klaudia", "Bogacka");
 
 
 while (true)
 {
-    Console.WriteLine("Podaj ocenę Kierownika");
+    Console.WriteLine("Podaj ocenę Pracownika");
 
     var input = Console.ReadLine();
     if (input == "q"  || input == "Q")
@@ -37,7 +23,7 @@ while (true)
     }
     try
     {
-        supervisor.AddGrade(input);
+        employee.AddGrade(input);
     }
     catch(Exception e)
     {
@@ -45,9 +31,9 @@ while (true)
     }
 
 }
-var statistics = supervisor.GetStatistics();
+var statistics = employee.GetStatistics();
 Console.WriteLine("===========================================");
-Console.WriteLine($"Wyniki Kierownika: {supervisor.Name} {supervisor.Surname}");
+Console.WriteLine($"Wyniki Pracownika: {employee.Name} {employee.Surname}");
 Console.WriteLine("===========================================");
 Console.WriteLine($"Średnia ocen: {statistics.Average}");
 Console.WriteLine($"Ocena minimalna: {statistics.Min}");
