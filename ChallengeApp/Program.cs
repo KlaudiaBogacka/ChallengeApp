@@ -9,7 +9,7 @@ Console.WriteLine("Aby zsumować oceny wpisz'q'");
 Console.WriteLine("===========================================");
 Console.WriteLine();
 
-var employee = new EmployeeInMemory("Klaudia", "Bogacka");
+var employee = new EmployeeInFile("Klaudia", "Bogacka");
 employee.GradeAdded += EmployeeGradeAdded;
 
 void EmployeeGradeAdded(object sender, EventArgs args)
